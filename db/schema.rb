@@ -12,39 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20171105144332) do
 
-  create_table "category", primary_key: "category_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name", limit: 45, null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-  create_table "movie", primary_key: "movie_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name",                 limit: 45, null: false
-    t.string  "description",          limit: 45, null: false
-    t.string  "director",             limit: 45, null: false
-    t.date    "release_date",                    null: false
-    t.float   "movie_rating",         limit: 24, null: false, unsigned: true
-    t.integer "category_category_id",            null: false
-    t.index ["category_category_id"], name: "fk_movie_category1_idx", using: :btree
-  end
-
-  create_table "review", primary_key: "review_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "text",           limit: 500, null: false
-    t.float   "review_rating",  limit: 24,  null: false
-    t.integer "user_user_id",               null: false
-    t.integer "movie_movie_id",             null: false
-    t.index ["movie_movie_id"], name: "fk_review_movie1_idx", using: :btree
-    t.index ["user_user_id"], name: "fk_review_user_idx", using: :btree
-  end
-
-  create_table "user", primary_key: "user_id", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "email",      limit: 45, null: false
-    t.string  "password",   limit: 45, null: false
-    t.string  "user_name",  limit: 45, null: false
-    t.string  "first_name", limit: 45, null: false
-    t.string  "last_name",  limit: 45, null: false
-    t.integer "admin",      limit: 1,  null: false
-  end
-
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -61,7 +32,4 @@ ActiveRecord::Schema.define(version: 20171105144332) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "movie", "category", column: "category_category_id", primary_key: "category_id", name: "fk_movie_category1"
-  add_foreign_key "review", "movie", column: "movie_movie_id", primary_key: "movie_id", name: "fk_review_movie1"
-  add_foreign_key "review", "user", column: "user_user_id", primary_key: "user_id", name: "fk_review_user"
 end

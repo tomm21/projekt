@@ -10,17 +10,23 @@
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
 default: &default
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   pool: 5
   username: root
-  password: 1234321
+  password: 
   host: localhost
-  socket: MySQL
+  socket: 
 
 development:
-  <<: *default
+  adapter: postgresql
   database: projekt_development
+  username: Tomek # replace this with your own user name
+  password: 123456 # replace this with your own password
+  host: localhost
+  encoding: UTF8
+  pool: 5
+  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
