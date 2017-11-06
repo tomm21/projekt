@@ -39,8 +39,13 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    autoprefixer-rails (7.1.6)
+      execjs
     bcrypt (3.1.11-x86-mingw32)
     bindex (0.5.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -83,7 +88,6 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
-    mysql2 (0.4.9-x86-mingw32)
     nio4r (2.1.0)
     nokogiri (1.8.1-x86-mingw32)
       mini_portile2 (~> 2.3.0)
@@ -168,12 +172,12 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.3, >= 3.3.7)
   byebug
   coffee-rails (~> 4.2)
   devise (~> 4.3)
   jbuilder (~> 2.5)
   jquery-rails
-  mysql2 (>= 0.3.18, < 0.5)
   pg (~> 0.21.0)
   puma (~> 3.0)
   rails (~> 5.0.6)
