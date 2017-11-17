@@ -1,13 +1,18 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
-
-
+  before_filter :redirect_to_root, only: [:new, :edit, :update, :destroy]
   # GET /movies
   # GET /movies.json
   def index
-    @movies = Movie.all
+    if params[:category].blank?
+      @movies = Movie.all
+    else
+      @category_id=Category.find_by(name: params[:category]).id
+      @movies = Movie.where(:category_id => @category_id)
+    end
   end
 
+  
   # GET /movies/1
   # GET /movies/1.json
   def show
@@ -25,9 +30,8 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    @movie = Movie.new(movie_params)
-
     if current_user.try(:admin?)
+      @movie = Movie.new(movie_params)
       respond_to do |format|
         if @movie.save
           format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
@@ -82,6 +86,10 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :director, :length)
+      params.require(:movie).permit(:title, :description, :director, :length,:category_id)
+    end
+
+    def redirect_to_root    
+      redirect_to root_path unless current_user.try(:admin?)
     end
 end
