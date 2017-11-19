@@ -1,13 +1,13 @@
 <div class="row">
 	<div class="col-md-12">
 		<div>
-			<h1>
+			<h5>
 				<a href="/users/<%=@user.id %>"> <%=@user.user_name %> </a>
-			</h1>
-			<h2 class="movie-desc">Imię: <%=@user.first_name%></h2>
-			<h2 class="movie-desc">Nazwisko: <%=@user.last_name%></h2>
-			<h2 class="movie-desc">Dołączył: <%=@user.created_at%></h2>
-			<h2 class="movie-desc">Ostatnio Online: <%=@user.last_sign_in_at%></h2>
+			</h5>
+			<h5 class="movie-desc">Imię: <%=@user.first_name%></h5>
+			<h5 class="movie-desc">Nazwisko: <%=@user.last_name%></h5>
+			<h5 class="movie-desc">Dołączył: <%=@user.created_at%></h5>
+			<h5 class="movie-desc">Ostatnio Online: <%=@user.last_sign_in_at%></h5>
 			<%if user_signed_in? %>
 				<%if current_user.id==@user.id%>
 					<li><%= link_to "Edytuj Profil", edit_user_registration_path(id: current_user.id)%> </li>
