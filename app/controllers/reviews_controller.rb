@@ -27,13 +27,11 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.movie_id=@movie.id
-    @review.user_id=current_user.id   
+    @review.user_id=current_user.id
+    @movie=Movie.find(@review.movie_id)   
     respond_to do |format|
       if @review.save
-        if @review.rating==nil
-          @review.update_attributes(:rating => 0)
-        end
-          @movie.update_attribute :rating, @movie.reviews.average(:rating)
+          @movie.update_attribute(:rating, @movie.reviews.average(:rating))
         format.html {redirect_to movie_path(@movie), notice: 'Review was successfully created.' }
       else
         format.html { render :new }
@@ -49,10 +47,7 @@ class ReviewsController < ApplicationController
     if (current_user.id==@review.user.id) || (current_user.try(:admin))
       respond_to do |format|
         if @review.update(review_params)
-          if @review.rating==nil
-            @review.update_attributes(:rating => 0)
-          end
-          @movie.update_attribute :rating, @movie.reviews.average(:rating)
+          @movie.update_attribute(:rating, @movie.reviews.average(:rating))
           format.html { redirect_to movie_path(@movie), notice: 'Review was successfully updated.' }
         else
           format.html { render :edit }
@@ -73,7 +68,7 @@ class ReviewsController < ApplicationController
         if @movie.reviews.blank?
           @movie.update_attribute :rating, 0
         else
-          @movie.update_attribute :rating, @movie.reviews.average(:rating)
+          @movie.update_attribute(:rating, @movie.reviews.average(:rating))
         end
         format.html { redirect_to movie_path(@movie), notice: 'Review was successfully destroyed.' }
       end
