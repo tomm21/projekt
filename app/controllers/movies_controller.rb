@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
   before_filter :redirect_to_root, only: [:new, :edit, :update, :destroy]
+  before_action :find_reviews, only: [:show]
   # GET /movies
   # GET /movies.json
   def index
@@ -12,11 +13,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  
-  # GET /movies/1
-  # GET /movies/1.json
-  def show
-  end
 
   # GET /movies/new
   def new
@@ -92,4 +88,10 @@ class MoviesController < ApplicationController
     def redirect_to_root    
       redirect_to root_path unless current_user.try(:admin?)
     end
+
+    def find_reviews
+      @movie = Movie.find(params[:id])
+      @reviews = @movie.reviews
+    end
+
 end

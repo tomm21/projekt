@@ -1,0 +1,21 @@
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading"> 
+			<a href="/users/<%= review.user.id %>"> <%=review.user.user_name %> </a>
+		</div>
+		<div class="panel-body">
+			<strong> Ocena: </strong><%=review.rating%>
+		</div>
+		<div class="panel-body">
+			<strong> Comment: </strong> <%=review.comment %>
+		</div>
+		<% if user_signed_in? %>
+			<% if review.user_id==current_user.id || current_user.try(:admin?)%>
+			    <div class="panel-footer">
+			        <%= link_to "Edytuj", edit_movie_review_path(review.movie,review) %>
+			        <%= link_to "Usuń", movie_review_path(review.movie,review), method: :delete, data: {confirm: "Jesteś pewny?"} %>
+			    </div>
+			<% end %>
+		<%end %>
+	</div>
+</div>

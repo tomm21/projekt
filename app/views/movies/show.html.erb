@@ -1,28 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class ="container">
 
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
-<p>
-  <strong>Category:</strong>
-  <%= @movie.category.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @movie.description %>
-</p>
+  <p id="notice"><%= notice %></p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p>
+        <strong>Title:</strong>
+        <%= @movie.title %>
+      </p>
+    </div>
+    <div class="panel-body">
+      <p>
+        <strong>Rating:</strong>
+        <%= @movie.rating %>
+      </p>
+      <p>
+        <strong>Category:</strong>
+        <%= @movie.category.name %>
+      </p>
+      <p>
+        <strong>Description:</strong>
+        <%= @movie.description %>
+      </p>
 
-<p>
-  <strong>Director:</strong>
-  <%= @movie.director %>
-</p>
+      <p>
+        <strong>Director:</strong>
+        <%= @movie.director %>
+      </p>
 
-<p>
-  <strong>Length:</strong>
-  <%= @movie.length %>
-</p>
-<% if current_user.try(:admin?)%>
-	<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<% end %>
-<%= link_to 'Back', movies_path %>
+      <p>
+        <strong>Length:</strong>
+        <%= @movie.length %>
+      </p>
+    </div>
+    <div class="panel-footer">
+      <% if current_user.try(:admin?)%>
+      	<%= link_to 'Edit', edit_movie_path(@movie) %> |
+      <% end %>
+      <%= link_to 'Add Review', new_movie_review_path(@movie) %>
+    </div>
+  </div>
+</div>
+<div>
+  <div class = "container">
+    <h1>Recenzje</h1>
+      <%= render @movie.reviews %>
+  </div>
+</div>

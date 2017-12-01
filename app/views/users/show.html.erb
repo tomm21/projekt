@@ -1,18 +1,22 @@
-<div class="row">
-	<div class="col-md-12">
-		<div>
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
 			<h5>
 				<a href="/users/<%=@user.id %>"> <%=@user.user_name %> </a>
 			</h5>
+		</div>
+		<div  class="panel-body">
 			<h5 class="movie-desc">Imię: <%=@user.first_name%></h5>
 			<h5 class="movie-desc">Nazwisko: <%=@user.last_name%></h5>
 			<h5 class="movie-desc">Dołączył: <%=@user.created_at%></h5>
 			<h5 class="movie-desc">Ostatnio Online: <%=@user.last_sign_in_at%></h5>
-			<%if user_signed_in? %>
-				<%if current_user.id==@user.id%>
-					<li><%= link_to "Edytuj Profil", edit_user_registration_path(id: current_user.id)%> </li>
-				<% end %>
-			<% end %>
 		</div>
+		<%if user_signed_in? %>
+			<%if current_user.id==@user.id%>
+				<div class="panel-footer">
+					<li><%= link_to "Edytuj Profil", edit_user_registration_path(id: current_user.id)%> </li>
+				</div>
+			<% end %>
+		<% end %>
 	</div>
 </div>

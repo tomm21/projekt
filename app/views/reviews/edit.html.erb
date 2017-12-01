@@ -1,0 +1,16 @@
+<h1>Editing Review</h1>
+
+<%= form_for([@movie, @review]) do |f| %>
+<div class="field">
+    <%= f.label :rating %>
+    <%= f.text_area :rating %>
+</div>
+
+<div class="field">
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+</div>
+<div class="actions">
+    <%= f.submit %>
+</div>
+<% end %>

@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
 end
 
 
+# star rating
+gem 'ratyrate'
 # database
 gem 'pg', '~> 0.21.0'
 # Devise gem
