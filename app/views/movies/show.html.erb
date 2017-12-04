@@ -33,10 +33,12 @@
       </p>
     </div>
     <div class="panel-footer">
-      <% if current_user.try(:admin?)%>
-      	<%= link_to 'Edit', edit_movie_path(@movie) %> |
+      <% if user_signed_in? %>
+        <% if current_user.try(:admin?)%>
+        	<%= link_to 'Edit', edit_movie_path(@movie) %> |
+        <% end %>
+        <%= link_to 'Add Review', new_movie_review_path(@movie) %>
       <% end %>
-      <%= link_to 'Add Review', new_movie_review_path(@movie) %>
     </div>
   </div>
 </div>
