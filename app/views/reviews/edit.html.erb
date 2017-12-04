@@ -3,12 +3,12 @@
 <%= form_for([@movie, @review]) do |f| %>
 <div class="field">
     <%= f.label :rating %>
-    <%= f.text_area :rating %>
+    <%= f.text_area :rating, :required => 'required' %>
 </div>
 
 <div class="field">
     <%= f.label :comment %>
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment, :required => 'required' %>
 </div>
 <div class="actions">
     <%= f.submit %>

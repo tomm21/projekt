@@ -13,26 +13,26 @@
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :required => 'required' %>
   </div>
   <div class="select">
     <%= f.label :category_id %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Select One" %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Select One", :required => 'required'%>
   </div>
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :required => 'required' %>
   </div>
 
   <div class="field">
     <%= f.label :director %>
-    <%= f.text_field :director %>
+    <%= f.text_field :director, :required => 'required' %>
   </div>
 
   <div class="field">
     <%= f.label :length %>
-    <%= f.text_field :length %>
+    <%= f.text_field :length, :required => 'required' %>
   </div>
 
   <div class="actions">
