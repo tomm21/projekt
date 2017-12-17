@@ -5,5 +5,6 @@ class User < ApplicationRecord
   ratyrate_rater
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  validates :user_name, :uniqueness => { :case_sensitive => false }
   #attr_accessible :email, :password, :password_confirmation, :remember_me, :user_name, :last_name, :first_name
 end
