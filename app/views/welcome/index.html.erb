@@ -11,7 +11,10 @@
 			</p>
 			<p><strong>Rating: </strong><%= movie.rating %></p>	
 			</div>
-		<%end%>		
+		<%end%>	
+		<div class="panel-footer">	
+			<%= link_to "Wyświetl wszystkie filmy", movies_path%>
+		</div>	
 	</div>
 	</div>	
 	<div class="col-xs-6">
@@ -28,7 +31,10 @@
 				<%= movie.rating %>
 			</p>
 			</div>	
-		<%end%>		
+		<%end%>
+		<div class="panel-footer">	
+			<%= link_to "Wyświetl cały ranking", ranking_index_path%>
+		</div>
 	</div>
 	</div>
 </div>
