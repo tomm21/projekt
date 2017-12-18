@@ -55,11 +55,18 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    if current_user.try(:admin?)
-      @category.destroy
+    @movies = @category.movies
+    if @movies.empty?
+      if current_user.try(:admin?)
+        @category.destroy
+        respond_to do |format|
+          format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+    else
       respond_to do |format|
-        format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-        format.json { head :no_content }
+        format.html { redirect_to categories_url, notice: 'Cant delete category becouse it belongs to a movie' }
       end
     end
   end

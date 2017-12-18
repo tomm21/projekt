@@ -63,14 +63,21 @@ class MoviesController < ApplicationController
   # DELETE /movies/1
   # DELETE /movies/1.json
   def destroy
-    if current_user.try(:admin?)
-      @movie.destroy
-      respond_to do |format|
-        format.html { redirect_to movies_url, notice: 'Movie was successfully destroyed.' }
-        format.json { head :no_content }
+    @reviews = @movie.reviews
+    if @reviews.empty?  
+      if current_user.try(:admin?)
+        @movie.destroy
+        respond_to do |format|
+          format.html { redirect_to movies_url, notice: 'Movie was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      else
+        redirect_to root_path,  notice: 'Only admin is allowed to delete a new movie'  
       end
     else
-      redirect_to root_path,  notice: 'Only admin is allowed to delete a new movie'  
+      respond_to do |format|
+        format.html { redirect_to movies_url, notice: 'Cannot delete movie becouse it belongs to a review' }
+      end
     end    
   end
 
