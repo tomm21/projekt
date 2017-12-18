@@ -5,7 +5,7 @@
 		</div>
 		<%if request.original_url.include?("users/")%>
 		<div class="panel-body">
-			<strong> Tytul: <a href="/movies/<%= review.movie.id %>"> </strong><%=review.movie.title%>
+			<strong> Tytul: </strong> <a href="/movies/<%= review.movie.id %>"> <%=review.movie.title%> </a>
 		</div>
 		<%end%>
 		<div class="panel-body">
@@ -16,10 +16,12 @@
 		</div>
 		<% if user_signed_in? %>
 			<% if review.user_id==current_user.id || current_user.try(:admin?)%>
+				<% unless request.original_url.include?("users/")%>
 			    <div class="panel-footer">
 			        <%= link_to "Edytuj", edit_movie_review_path(review.movie,review) %>
 			        <%= link_to "Usuń", movie_review_path(review.movie,review), method: :delete, data: {confirm: "Jesteś pewny?"} %>
 			    </div>
+			   	<%end%>
 			<% end %>
 		<%end %>
 	</div>
