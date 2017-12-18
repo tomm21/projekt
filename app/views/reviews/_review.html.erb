@@ -3,6 +3,11 @@
 		<div class="panel-heading"> 
 			<a href="/users/<%= review.user.id %>"> <%=review.user.user_name %> </a>
 		</div>
+		<%if request.original_url.include?("users/")%>
+		<div class="panel-body">
+			<strong> Tytul: <a href="/movies/<%= review.movie.id %>"> </strong><%=review.movie.title%>
+		</div>
+		<%end%>
 		<div class="panel-body">
 			<strong> Ocena: </strong><%=review.rating%>
 		</div>

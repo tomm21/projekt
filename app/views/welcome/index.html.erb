@@ -1,1 +1,35 @@
-<h1>Strona główna</h1>
+<div class ="container-fluid">
+<div class="row">	
+	<div class="col-xs-6">
+	<div class="panel panel-default">
+		<h3> Ostatnio dodane </h3>
+		<% @movies.each do |movie| %>
+			<div class="panel panel-default">
+			<p>
+				<strong>Title: </strong>
+				<a href="/movies/<%= movie.id %>"><%= movie.title %></a>
+			</p>
+			<p><strong>Rating: </strong><%= movie.rating %></p>	
+			</div>
+		<%end%>		
+	</div>
+	</div>	
+	<div class="col-xs-6">
+	<div class="panel panel-default">
+		<h3> Top 5 </h3>
+		<% @moviesRated.each do |movie| %>
+			<div class="panel panel-default">
+			<p>
+				<strong>Title: </strong>
+				<a href="/movies/<%= movie.id %>"><%= movie.title %></a>
+			</p>
+			<p>
+				<strong>Rating: </strong>
+				<%= movie.rating %>
+			</p>
+			</div>	
+		<%end%>		
+	</div>
+	</div>
+</div>
+</div>
