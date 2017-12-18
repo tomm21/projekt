@@ -14,6 +14,7 @@
       <div class="navbar-header">
       <%= link_to "Strona główna", root_path, class: "navbar-brand"%>
       <%= link_to "Filmy", movies_path, class: "navbar-brand"%>
+      <%= link_to "Ranking", ranking_index_path, class: "navbar-brand"%>
       </div>
       <ul class="nav navbar-nav navbar-right">
       	<% if user_signed_in? %>
