@@ -76,7 +76,7 @@ class MoviesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to movies_url, notice: 'Cannot delete movie becouse it belongs to a review' }
+        format.html { redirect_to movies_url, notice: 'Cannot delete this movie becouse it belongs to a review' }
       end
     end    
   end

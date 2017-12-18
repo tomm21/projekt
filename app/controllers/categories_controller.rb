@@ -66,7 +66,7 @@ class CategoriesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to categories_url, notice: 'Cant delete category becouse it belongs to a movie' }
+        format.html { redirect_to categories_url, notice: 'Cannot delete this category becouse it belongs to a movie' }
       end
     end
   end
